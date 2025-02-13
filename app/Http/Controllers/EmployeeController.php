@@ -1,5 +1,6 @@
 <?php
 
+
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
@@ -124,5 +125,12 @@ class EmployeeController extends Controller
         $employee = Employee::findOrFail($id);
         $employee->delete();
 
-        return redirect()->route('employees.home')->with('success', 'Employee deleted successfully.');    }
+        return redirect()->route('employees.home')->with('success', 'Employee deleted successfully.');    
+    }
+
+    public function delete($id)
+    {
+        $employee = Employee::findOrFail($id);
+        return view("employees.deleteEmployee", compact("employee"));
+    }
 }

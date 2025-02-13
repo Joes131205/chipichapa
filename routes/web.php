@@ -14,9 +14,15 @@ use App\Http\Controllers\EmployeeController;
 |
 */
 
-Route::get('/', function () {
-    return view('employees.home');
+Route::get("/", function () {
+    return view("employees.home");
 });
 
-Route::get('/employees', [EmployeeController::class, 'index']);
-Route::post('/employees/store', [EmployeeController::class, 'store'])->name('employees.store');
+Route::get('/employees', [EmployeeController::class, 'index'])->name('employees.home');
+Route::get('/employees/create', [EmployeeController::class, 'create'])->name('employees.create');
+Route::get('/employees/{id}/delete', [EmployeeController::class, 'delete'])->name('employees.delete');
+Route::get("/employees/{id}/edit", [EmployeeController::class, 'edit'])->name('employees.edit');
+
+Route::post('/employees', [EmployeeController::class, 'store'])->name('employees.store');
+Route::put('/employees/{id}', [EmployeeController::class, 'update'])->name('employees.update');
+Route::delete('/employees/{id}', [EmployeeController::class, 'destroy'])->name('employees.destroy');
